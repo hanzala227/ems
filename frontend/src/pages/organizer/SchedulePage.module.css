@@ -1,0 +1,87 @@
+.page{display:flex;flex-direction:column;gap:var(--space-5);max-width:var(--content-max-width)}
+.header{display:flex;align-items:flex-start;justify-content:space-between}
+.headerActions{display:flex;gap:var(--space-3)}
+.title{font-size:var(--text-2xl);font-weight:var(--font-bold);color:var(--color-text-primary);letter-spacing:-.02em}
+.sub{font-size:var(--text-sm);color:var(--color-text-secondary);margin-top:var(--space-1)}
+.sessionList{display:flex;flex-direction:column;gap:var(--space-3)}
+.sessionCard{
+  background:var(--color-bg-card);
+  border:1px solid transparent;
+  background-image: linear-gradient(var(--color-bg-card), var(--color-bg-card)), var(--neon-border-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius:var(--radius-lg);
+  padding:var(--space-4) var(--space-5);
+  display:flex;
+  align-items:center;
+  gap:var(--space-5);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-bounce);
+  box-shadow:var(--shadow-card);
+}
+.sessionCard:hover{
+  transform: translateY(-4px) scale(1.005);
+  box-shadow:var(--shadow-card-hover);
+  background-image: linear-gradient(var(--color-bg-card-hover), var(--color-bg-card-hover)), var(--neon-border-focus);
+}
+.sessionCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 15%, rgba(124,92,191,0.5) 50%, transparent 85%);
+  pointer-events: none;
+  z-index: 2;
+}
+.sessionCard::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(124,92,191,0.08) 0%, transparent 65%);
+  pointer-events: none;
+  transition: opacity 0.5s;
+  opacity: 0.4;
+}
+.sessionCard:hover::after { opacity: 1; }
+
+.empty{
+  background:var(--color-bg-card);
+  border:1px solid transparent;
+  background-image: linear-gradient(var(--color-bg-card), var(--color-bg-card)), var(--neon-border-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius:var(--radius-lg);
+  padding:var(--space-12);
+  text-align:center;
+  color:var(--color-text-secondary);
+  font-size:var(--text-sm);
+  position: relative;
+  overflow: hidden;
+  box-shadow:var(--shadow-card);
+}
+.empty::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 15%, rgba(124,92,191,0.5) 50%, transparent 85%);
+  pointer-events: none;
+  z-index: 2;
+}
+.sessionTime{display:flex;flex-direction:column;align-items:center;font-size:var(--text-xs);color:var(--color-text-secondary);min-width:70px;text-align:center}
+.timeSep{color:var(--color-text-tertiary)}
+.sessionInfo{flex:1;min-width:0}
+.sessionTitle{display:block;font-size:var(--text-sm);font-weight:var(--font-semibold);color:var(--color-text-primary)}
+.sessionSpeaker{display:block;font-size:var(--text-xs);color:var(--color-text-secondary);margin-top:2px}
+.sessionStage{display:inline-block;font-size:var(--text-xs);color:var(--color-accent-hover);background:var(--color-accent-muted);padding:2px 8px;border-radius:var(--radius-full);margin-top:4px}
+.deleteBtn{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:var(--radius-sm);color:var(--color-text-tertiary);background:none;border:none;cursor:pointer;transition:var(--transition-fast)}
+.deleteBtn:hover{color:var(--color-error);background:var(--color-error-bg)}
+.empty{background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-12);text-align:center;color:var(--color-text-secondary);font-size:var(--text-sm)}
+.link{color:var(--color-text-accent);background:none;border:none;cursor:pointer;font-size:inherit}
+.formGrid{display:flex;flex-direction:column;gap:var(--space-4)}
+.fieldGroup{display:flex;flex-direction:column;gap:var(--space-2)}
+.fieldLabel{font-size:var(--text-sm);font-weight:var(--font-medium);color:var(--color-text-secondary)}
+.select{background:var(--color-bg-elevated);border:1px solid var(--color-border);border-radius:var(--radius-md);color:var(--color-text-primary);font-size:var(--text-sm);padding:10px 14px;transition:var(--transition-base)}
+.select:focus{outline:none;border-color:var(--color-accent)}

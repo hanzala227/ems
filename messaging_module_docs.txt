@@ -1,0 +1,38 @@
+Messaging Module Documentation
+==============================
+
+SECTION 1: Original Requirements
+--------------------------------
+1. Dynamic Unread Message Counter: A real-time counter that immediately displays and scales numeric counts of unread messages when new communications are received from any user.
+2. Responsive Sidebar Layout: Ensure the contacts sidebar layout responsively adapts and is fully accessible on all non-desktop devices (mobile, tablets) without being incorrectly obscured or losing core functionality.
+3. Search Functionality: Accurate, lag-free search that seamlessly queries across three datasets simultaneously: all contacts, complete conversation history, and individual message content.
+4. End-to-End Working System:
+   - Seamless message sending/receiving with no delivery failures.
+   - Real-time updates for incoming messages, status changes, and read counters.
+   - Dynamic user status indicators (persistent real-time online icon).
+   - Live typing indicators.
+   - Robust conversation threading.
+   - Comprehensive error handling to flag, log, and retry failed deliveries.
+5. Documentation: A standalone text file documenting the original requirements, fixes and enhancements applied, and remaining missing/incomplete features.
+
+SECTION 2: Fixes and Enhancements Implemented
+---------------------------------------------
+1. Unread Counter Synchronisation:
+   - Technical Fix: Modified `useMessages.js` and `messageSlice.js` to accurately track when a message belongs to the actively open conversation. If a new message is received while the user is actively viewing that specific conversation, the Redux `unreadCount` is prevented from artificially inflating, resolving the persistent synchronization bug.
+
+2. Mobile Sidebar Layout Resolution:
+   - Technical Fix: Addressed the absolute positioning z-index bug in `MessagesPage.module.css`. Conditionally applied a `chatWindowActive` CSS class on mobile devices so the chat window is explicitly hidden when no active conversation is selected (`!activeConversationId`). This restores full accessibility to the contacts list on mobile.
+
+3. Comprehensive Search System:
+   - Technical Fix: Created a new backend endpoint `GET /api/messages/search?q=` in `message.controller.js` to perform an indexed Regex query on message contents where the user is a participant.
+   - On the frontend (`MessagesPage.jsx`), combined `userApi.searchUsers` and the new `msgApi.searchMessages` into a debounced hook. Client-side filtering was also added for the active `conversations` list, ensuring contacts, conversation history, and individual message content are searched simultaneously and displayed cleanly in sectioned dropdowns.
+
+4. End-to-End System Reliability & Error Handling:
+   - Technical Fix: Upgraded `socket.emit('message:send')` to actively listen for both `message:sent` and `message:error` callbacks from the backend. If an error is caught or a REST fallback fails, `react-hot-toast` immediately surfaces the error, removes the optimistic UI bubble, and restores the failed message text back into the input field for easy retry.
+
+SECTION 3: Remaining Missing or Incomplete Features (Future Development)
+------------------------------------------------------------------------
+- Pagination/Infinite Scrolling: The message history currently loads a static limit. Future development requires implementing intersection observers to load older messages dynamically as the user scrolls up.
+- File and Media Attachments: The current system only supports plaintext strings. Future implementations need a multipart/form-data integration with AWS S3/Cloudinary for images and document sharing.
+- Advanced Message Actions: Functionality to delete, edit, or react (emoji reactions) to individual messages is not yet implemented.
+- Group Chats: The schema and controllers are currently strictly peer-to-peer (1-on-1). Implementing multi-participant conversation threading will require adjusting the `conversationId` generation and data models.

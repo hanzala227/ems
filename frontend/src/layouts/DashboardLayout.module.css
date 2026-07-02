@@ -1,0 +1,64 @@
+.root {
+  display: flex;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 0%, #0d101a 0%, #080a10 50%, #05060a 100%);
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Base glowing blob - elegant & subtle */
+.root::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(124, 92, 191, 0.08) 0%, rgba(59,130,246,0.02) 40%, transparent 60%);
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(100px);
+}
+
+/* Secondary glowing blob - elegant & subtle */
+.root::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, rgba(59,130,246,0.05) 0%, rgba(124,92,191,0.03) 50%, transparent 60%);
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(100px);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.25s var(--ease-smooth);
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.mainCollapsed {
+  margin-left: var(--sidebar-collapsed-width);
+}
+
+.content {
+  flex: 1;
+  padding: var(--space-6);
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
+@media (max-width: 768px) {
+  .main { margin-left: 0; }
+}

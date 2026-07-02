@@ -1,0 +1,8 @@
+.form{display:flex;flex-direction:column;gap:var(--space-4)}
+.expoInfo{background:var(--color-bg-elevated);border-radius:var(--radius-md);padding:var(--space-4);border-left:3px solid var(--color-accent)}
+.expoName{font-size:var(--text-base);font-weight:var(--font-semibold);color:var(--color-text-primary)}
+.expoMeta{font-size:var(--text-sm);color:var(--color-text-secondary);margin-top:2px}
+.fieldGroup{display:flex;flex-direction:column;gap:var(--space-2)}
+.label{font-size:var(--text-sm);font-weight:var(--font-medium);color:var(--color-text-secondary)}
+.textarea{background:var(--color-bg-elevated);border:1px solid var(--color-border);border-radius:var(--radius-md);color:var(--color-text-primary);font-size:var(--text-sm);padding:10px 14px;font-family:var(--font-sans);resize:vertical;transition:var(--transition-base);width:100%}
+.textarea:focus{outline:none;border-color:var(--color-accent);box-shadow:0 0 0 3px var(--color-accent-muted)}

@@ -1,0 +1,108 @@
+.page{display:flex;flex-direction:column;gap:var(--space-5);max-width:var(--content-max-width)}
+.header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4)}
+.title{font-size:var(--text-2xl);font-weight:var(--font-bold);color:var(--color-text-primary);letter-spacing:-.02em}
+.sub{font-size:var(--text-sm);color:var(--color-text-secondary);margin-top:var(--space-1)}
+.headerActions{display:flex;align-items:center;gap:var(--space-3)}
+.periodSelect{background:var(--color-bg-elevated);border:1px solid var(--color-border);border-radius:var(--radius-md);color:var(--color-text-secondary);font-size:var(--text-sm);padding:8px 12px;cursor:pointer}
+.reportTabs{display:flex;gap:var(--space-2);flex-wrap:wrap}
+.reportTab{display:flex;align-items:center;gap:var(--space-2);padding:10px 18px;border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:var(--font-medium);color:var(--color-text-secondary);background:var(--color-bg-elevated);border:1px solid var(--color-border);cursor:pointer;transition:var(--transition-fast)}
+.reportTab:hover{border-color:var(--color-accent);color:var(--color-text-primary)}
+.activeReportTab{background:var(--color-accent-muted);border-color:var(--color-accent);color:var(--color-text-primary)}
+.reportContent{display:flex;flex-direction:column;gap:var(--space-4)}
+.statsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-4)}
+.statCard{
+  background:var(--color-bg-card);
+  border:1px solid transparent;
+  background-image: linear-gradient(var(--color-bg-card), var(--color-bg-card)), var(--neon-border-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius:var(--radius-lg);
+  padding:var(--space-5);
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-bounce);
+  box-shadow:var(--shadow-card);
+}
+.statCard:hover{
+  transform: translateY(-4px) scale(1.005);
+  box-shadow:var(--shadow-card-hover);
+  background-image: linear-gradient(var(--color-bg-card-hover), var(--color-bg-card-hover)), var(--neon-border-focus);
+}
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 15%, rgba(124,92,191,0.5) 50%, transparent 85%);
+  pointer-events: none;
+  z-index: 2;
+}
+.statCard::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(124,92,191,0.08) 0%, transparent 65%);
+  pointer-events: none;
+  transition: opacity 0.5s;
+  opacity: 0.4;
+}
+.statCard:hover::after { opacity: 1; }
+
+.chartCard{
+  background:var(--color-bg-card);
+  border:1px solid transparent;
+  background-image: linear-gradient(var(--color-bg-card), var(--color-bg-card)), var(--neon-border-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-card);
+  padding:var(--space-6);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-bounce);
+}
+.chartCard:hover{
+  transform: translateY(-4px) scale(1.005);
+  box-shadow:var(--shadow-card-hover);
+  background-image: linear-gradient(var(--color-bg-card-hover), var(--color-bg-card-hover)), var(--neon-border-focus);
+}
+.chartCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 15%, rgba(124,92,191,0.5) 50%, transparent 85%);
+  pointer-events: none;
+  z-index: 2;
+}
+.chartCard::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(124,92,191,0.08) 0%, transparent 65%);
+  pointer-events: none;
+  transition: opacity 0.5s;
+  opacity: 0.4;
+}
+.chartCard:hover::after { opacity: 1; }
+.statDot{width:8px;height:8px;border-radius:50%}
+.statVal{font-size:var(--text-2xl);font-weight:var(--font-bold);color:var(--color-text-primary)}
+.statLbl{font-size:var(--text-xs);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em;font-weight:var(--font-semibold)}
+.chartTitle{font-size:var(--text-base);font-weight:var(--font-semibold);color:var(--color-text-primary);margin-bottom:var(--space-4)}
+.emptyTxt{font-size:var(--text-sm);color:var(--color-text-tertiary);text-align:center;padding:var(--space-8)}
+.engRow{display:flex;align-items:center;gap:var(--space-8)}
+.bigNum{font-size:var(--text-4xl);font-weight:var(--font-bold);color:var(--color-text-primary);letter-spacing:-.03em}
+.bigLbl{font-size:var(--text-sm);color:var(--color-text-tertiary)}
+.occList{display:flex;flex-direction:column;gap:var(--space-4)}
+.occItem{display:flex;align-items:center;gap:var(--space-4)}
+.occName{font-size:var(--text-sm);color:var(--color-text-secondary);min-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.occBarWrap{flex:1;height:10px;background:var(--color-bg-elevated);border-radius:var(--radius-full);overflow:hidden}
+.occBar{height:100%;background:linear-gradient(90deg,#7c5cbf,#9b74d4);border-radius:var(--radius-full);transition:width .4s ease}
+.occRate{font-size:var(--text-sm);font-weight:var(--font-bold);color:var(--color-text-primary);min-width:40px;text-align:right}
+.occDetail{font-size:var(--text-xs);color:var(--color-text-tertiary);min-width:80px}
+@media print{.reportTabs,.headerActions{display:none}.page{gap:16px}}

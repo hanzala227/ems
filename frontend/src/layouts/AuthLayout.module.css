@@ -1,0 +1,130 @@
+/* ============================================================
+   EventSphere Auth Layout — Elegant Dark Dashboard Styling
+   ============================================================ */
+
+.root {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-base);
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  font-family: var(--font-sans);
+}
+
+/* Background floating orbs */
+.root::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(124, 92, 191, 0.1) 0%, transparent 60%);
+  filter: blur(40px);
+  z-index: 0;
+  animation: floatOrb 12s ease-in-out infinite alternate;
+}
+
+.root::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+  filter: blur(40px);
+  z-index: 0;
+  animation: floatOrb 16s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatOrb {
+  from { transform: translate(0, 0); }
+  to { transform: translate(30px, 30px); }
+}
+
+/* Elegant Glass Card */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: var(--color-bg-card);
+  border: 1px solid transparent;
+  background-image: linear-gradient(var(--color-bg-card), var(--color-bg-card)), var(--neon-border-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: var(--shadow-card);
+  z-index: 1;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-bounce);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  background-image: linear-gradient(var(--color-bg-card-hover), var(--color-bg-card-hover)), var(--neon-border-focus);
+}
+
+/* Top shimmer line */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 15%, rgba(124, 92, 191, 0.6) 50%, transparent 85%);
+  z-index: 2;
+}
+
+/* Inner glow */
+.card::after {
+  content: '';
+  position: absolute;
+  top: -40%; right: -30%;
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(124, 92, 191, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.4s;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.logoIcon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, rgba(124, 92, 191, 0.18), rgba(124, 92, 191, 0.05));
+  border: 1px solid rgba(124, 92, 191, 0.3);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(124, 92, 191, 0.15);
+}
+
+.logoText {
+  font-size: 1.25rem;
+  font-weight: var(--font-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 480px) {
+  .card { padding: 32px 24px; border-radius: var(--radius-lg); }
+  .logoText { font-size: 1.15rem; }
+}
